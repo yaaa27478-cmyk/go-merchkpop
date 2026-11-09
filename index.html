@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#b92f3d"><title>GO MERCHKPOP — Your K-Pop Merch Store</title>
+<style>
+:root{--green:#c94b55;--deep:#8f2633;--mint:#fff0df;--bg:#f4f0df;--ink:#293b25;--muted:#68745c;--line:#ead5c8;--pink:#f8dadd;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(#183d1d22,#183d1d22),url("tema-piknik.jpg") center top/cover fixed;color:var(--ink);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer;border:0}
+header{position:sticky;top:0;z-index:5;background:#fff8f0ed;backdrop-filter:blur(12px);border-bottom:3px solid #c94b55}
+.nav{max-width:1180px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}.brand img{width:52px;height:52px;object-fit:cover;border-radius:50%;border:2px solid #dce9dc}.brand b{font-size:18px;letter-spacing:.5px;color:var(--deep)}.brand small{display:block;color:var(--muted);font-size:11px}
+.navlinks{display:flex;gap:8px;align-items:center}.navlinks button,.iconbtn{background:#fff0df;color:var(--deep);padding:10px 15px;border-radius:24px;font-weight:700;font-size:13px}.iconbtn{font-size:17px;padding:9px 12px}.wa{background:#5b9b70!important;color:white!important}
+.menu-trigger{display:none;background:#fff0df;color:var(--deep);border-radius:14px;padding:10px 13px;font-size:22px;font-weight:900}.drawer-shade{position:fixed;inset:0;background:#17251c88;z-index:40;opacity:0;visibility:hidden;transition:.25s}.drawer-shade.open{opacity:1;visibility:visible}.side-drawer{position:fixed;z-index:41;inset:0 auto 0 0;width:min(82vw,340px);background:#fffaf3;box-shadow:12px 0 35px #17251c30;transform:translateX(-105%);transition:transform .28s ease;overflow-y:auto;padding:24px 20px calc(28px + env(safe-area-inset-bottom))}.side-drawer.open{transform:translateX(0)}.drawer-profile{display:flex;align-items:center;gap:12px;padding:12px 4px 22px;border-bottom:1px solid var(--line);margin-bottom:12px}.drawer-profile img{width:58px;height:58px;object-fit:cover;border-radius:50%;border:2px solid var(--line)}.drawer-profile b{display:block;color:var(--deep);font-size:17px}.drawer-profile small{color:var(--muted)}.drawer-link{display:flex;align-items:center;gap:15px;width:100%;padding:15px 10px;margin:3px 0;text-align:left;border-radius:15px;background:transparent;color:var(--ink);font-size:16px;font-weight:700}.drawer-link:active,.drawer-link:hover{background:#fff0df}.drawer-link span{width:25px;text-align:center;font-size:20px}.drawer-note{margin-top:18px;padding:14px;background:#fff0df;border-radius:15px;color:var(--deep);font-size:12px;line-height:1.5}
+main{max-width:1180px;margin:auto;padding:22px 20px 70px}
+.hero{position:relative;background:linear-gradient(180deg,rgba(255,250,243,.88) 0%,rgba(255,250,243,.76) 48%,rgba(255,250,243,.86) 100%),url("tema-piknik.jpg") center 48%/cover;border:3px solid #fff;border-radius:34px;padding:clamp(22px,4vw,42px);display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center;overflow:hidden;box-shadow:0 18px 45px #24452a35}
+.hero:before{content:"🍓";position:absolute;right:34%;top:16px;font-size:34px;opacity:.9;transform:rotate(-18deg);filter:drop-shadow(0 2px 3px #fff)}.hero:after{content:"🍊";position:absolute;right:12px;bottom:18px;font-size:38px;opacity:.9;transform:rotate(15deg);filter:drop-shadow(0 2px 3px #fff)}
+.kicker{display:inline-flex;align-items:center;gap:7px;background:#fffdf6;color:#9d4051;border:1px solid #f5d6d0;padding:8px 14px;border-radius:22px;font-size:11px;font-weight:850;letter-spacing:.8px;box-shadow:0 5px 14px #a65c5c10}
+.hero h1{font-size:clamp(31px,5.2vw,54px);line-height:1.06;letter-spacing:-1.3px;margin:17px 0 13px;color:#71475f;text-shadow:0 1px 0 #fff9}.hero p{color:#514d43;line-height:1.75;max-width:540px;font-size:clamp(14px,2vw,17px);text-shadow:0 1px 0 #fff9}.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:23px}
+.primary,.secondary{padding:13px 21px;border-radius:25px;font-weight:850;transition:transform .18s,box-shadow .18s}.primary{background:linear-gradient(135deg,#a94b63,#794b70);color:white;box-shadow:0 8px 18px #9b53612b}.secondary{background:#fffdf8;color:#80516a;border:1px solid #f0d7d3}.primary:active,.secondary:active{transform:scale(.97)}
+.hero-logo{position:relative;display:flex;justify-content:center;align-items:center;min-height:250px}.hero-logo:before{content:"🍒";position:absolute;left:4%;top:10%;font-size:40px;transform:rotate(-15deg)}.hero-logo:after{content:"🍑";position:absolute;right:2%;bottom:9%;font-size:42px;transform:rotate(12deg)}.hero-logo img{position:relative;z-index:1;width:min(82%,290px);aspect-ratio:1;object-fit:cover;border-radius:50%;border:9px solid #fffdf5;box-shadow:0 15px 35px #8f53652b;background:#f8e6df}
+.intro{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:24px 0;padding:18px 22px;background:#fffaf0ed;border:1px solid var(--line);border-radius:22px;color:#506355;line-height:1.6}
+.section-title{display:flex;align-items:center;gap:10px;color:var(--deep);font-size:21px;margin:28px 0 13px}.section-title span{background:#fff0df;padding:8px 13px;border-radius:30px}
+.categories{display:flex;gap:9px;overflow:auto;padding:3px 0 12px}.cat{white-space:nowrap;border:1px solid #cfe0d0;background:white;color:var(--deep);border-radius:24px;padding:10px 17px;font-weight:700}.cat.active{background:var(--green);color:white;border-color:var(--green)}
+.searchrow{display:flex;align-items:center;gap:12px;margin:8px 0 18px}.searchrow input{flex:1;min-width:0;border:1px solid var(--line);border-radius:25px;padding:14px 18px;background:white;outline:none}.searchrow label{color:var(--deep);font-weight:800;font-size:13px}
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.product{background:#fffaf0f2;border:1px solid var(--line);border-radius:22px;padding:13px;box-shadow:0 7px 20px #405e4210}.product-art{height:170px;border-radius:16px;background:linear-gradient(145deg,#fff0d9,#f8dadd);display:grid;place-items:center;font-size:58px;position:relative}.tag{position:absolute;top:10px;left:10px;background:#fff;color:var(--deep);padding:5px 9px;border-radius:15px;font-size:10px;font-weight:800}.product h3{font-size:15px;margin:13px 2px 5px}.product p{font-size:12px;color:var(--muted);margin:0 2px 12px}.price{font-weight:900;color:var(--deep);font-size:16px;margin:0 2px 12px}.product button{width:100%;padding:11px;border-radius:18px;background:#f9e1d6;color:var(--deep);font-weight:800}
+footer{padding:28px 15px;text-align:center;color:var(--muted);font-size:12px}
+.modalbg{position:fixed;inset:0;background:#1e302799;display:none;align-items:center;justify-content:center;padding:16px;z-index:20}.modalbg.show{display:flex}.modal{background:#fffaf3;border-radius:22px;padding:22px;width:min(480px,100%);max-height:88vh;overflow:auto}.modalhead{display:flex;justify-content:space-between;align-items:center}.modalhead h2{font-size:19px;color:var(--deep)}.close{background:#fff0df;border-radius:20px;padding:7px 12px}.field{margin:12px 0}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px;color:var(--deep)}.field input,.field select{width:100%;padding:12px;border:1px solid var(--line);border-radius:11px;background:#fffdf8}.cartline{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}.empty{text-align:center;padding:25px;color:var(--muted)}
+@media(max-width:760px){.hero{grid-template-columns:1fr;text-align:left;gap:6px;padding:24px 22px 20px;border-radius:28px}.hero:before{right:12%;top:12px;font-size:27px}.hero h1{font-size:clamp(32px,9vw,43px);max-width:340px}.hero p{font-size:14px;line-height:1.65}.hero-actions{margin-top:17px}.hero-logo{min-height:190px;margin-top:4px}.hero-logo img{width:178px;border-width:7px}.hero-logo:before{left:14%;top:5%;font-size:32px}.hero-logo:after{right:13%;bottom:4%;font-size:34px}.nav{flex-wrap:nowrap;gap:9px;padding:9px 13px}.menu-trigger{display:block}.navlinks{display:none}.brand img{width:43px;height:43px}.brand b{font-size:15px}.navlinks{width:100%;order:3;justify-content:space-between}.navlinks button{flex:1;padding:9px 5px;font-size:11px}.hero{grid-template-columns:1fr;padding:24px}.hero-logo img{width:175px}.intro{display:block}.intro .primary{margin-top:10px}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.product-art{height:135px}.searchrow label{display:none}}
+@media(max-width:390px){.products{grid-template-columns:1fr}.product-art{height:180px}}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(135deg,#ffffff12,#ffffff00 35%,#ffffff10);z-index:-1}
+
+.wa-strip{position:relative;display:flex;align-items:center;gap:12px;overflow:hidden;padding:9px clamp(14px,4vw,34px);background:linear-gradient(90deg,#f8dadd,#fff0df,#f7e8bd);border-bottom:1px solid #e8c8c5;color:#874356;min-height:46px}
+.wa-strip-track{display:flex;align-items:center;gap:34px;white-space:nowrap;min-width:0;flex:1;overflow:hidden;font-size:12px;font-weight:800;letter-spacing:.25px;animation:waTicker 22s linear infinite}
+.wa-strip-track span{flex:0 0 auto}
+.wa-strip:hover .wa-strip-track{animation-play-state:paused}
+.wa-strip-button{flex:0 0 auto;border-radius:22px;padding:8px 15px;background:#5b9b70;color:#fff;font-size:12px;font-weight:850;box-shadow:0 4px 10px #5b9b7025}
+@keyframes waTicker{from{transform:translateX(0)}to{transform:translateX(-48%)}}
+@media(max-width:760px){.wa-strip{padding:8px 12px;gap:8px;min-height:43px}.wa-strip-track{font-size:11px;gap:24px}.wa-strip-button{padding:8px 12px;font-size:11px}}
+
+
+.info-guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0 26px}
+.info-guide button{background:#fffaf3;border:1px solid #eadbd2;border-radius:20px;padding:16px 12px;text-align:left;color:#65465c;box-shadow:0 7px 18px #704b5b0d;min-height:112px}
+.info-guide button b{display:block;font-size:15px;margin:8px 0 4px}.info-guide button small{color:#796d68;font-size:12px;line-height:1.4}
+.info-guide .guide-icon{font-size:25px}
+.field textarea{width:100%;min-height:105px;padding:12px;border:1px solid var(--line);border-radius:11px;background:#fffdf8;font:inherit;resize:vertical}
+@media(max-width:760px){.info-guide{grid-template-columns:1fr;gap:9px}.info-guide button{min-height:0;display:grid;grid-template-columns:36px 1fr;align-items:center;padding:12px 14px}.info-guide button .guide-icon{grid-row:span 2}.info-guide button b{margin:0 0 2px}}
+
+
+.modal:has(#ownerOrdersSheet){width:min(1120px,96vw)}
+.sheet-stats{display:grid;grid-template-columns:repeat(5,minmax(105px,1fr));gap:8px;margin:12px 0}
+.sheet-stats>div{background:#fff0df;border:1px solid var(--line);border-radius:13px;padding:10px;min-width:0}
+.sheet-stats small{display:block;color:var(--muted);font-size:10px}.sheet-stats b{display:block;color:var(--deep);font-size:13px;margin-top:4px;overflow-wrap:anywhere}
+.sheet-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}
+.sheet-tools input{flex:1;min-width:180px;padding:11px 13px;border:1px solid var(--line);border-radius:12px;background:#fffdf8}
+.sheet-tools select{padding:11px;border:1px solid var(--line);border-radius:12px;background:#fffdf8;max-width:100%}
+.sheet-wrap{width:100%;overflow:auto;border:1px solid var(--line);border-radius:13px;background:#fffdf8;max-height:48vh}
+.orders-sheet{border-collapse:separate;border-spacing:0;width:100%;min-width:1120px;font-size:11px;text-align:left}
+.orders-sheet th{position:sticky;top:0;background:#f8e7dc;color:var(--deep);padding:10px 9px;white-space:nowrap;z-index:1}
+.orders-sheet td{padding:9px;border-bottom:1px solid #eee2da;vertical-align:top;max-width:180px;overflow-wrap:anywhere}
+.orders-sheet tr:nth-child(even) td{background:#fffaf4}.sheet-action{background:#fff0df;color:var(--deep);border:1px solid var(--line);border-radius:9px;padding:7px 9px;font-size:10px;font-weight:800;margin:2px;white-space:nowrap}.sheet-action:disabled{opacity:.4;cursor:not-allowed}.sheet-status{display:inline-block;background:#f8e7dc;color:var(--deep);border-radius:10px;padding:5px 7px;min-width:90px}.sheet-muted,.sheet-empty{color:var(--muted)}.sheet-empty{text-align:center;padding:22px!important}
+@media(max-width:760px){.modal:has(#ownerOrdersSheet){width:96vw;padding:14px}.sheet-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.sheet-stats>div:last-child{grid-column:span 2}.sheet-wrap{max-height:43vh}.sheet-tools{align-items:stretch}.sheet-tools input,.sheet-tools select,.sheet-tools button{width:100%}}
+
+
+/* === GLOBAL PASTEL PINK / GIRLY THEME === */
+:root{--green:#e58aad;--deep:#8b4967;--mint:#ffe6ef;--bg:#fff5f8;--ink:#553d4b;--muted:#8a7180;--line:#f0cbd9;--pink:#f8d5e3;--white:#fff}
+body{background:radial-gradient(ellipse at 15% 8%,#fff 0,#fff6fa 42%,#fdebf2 100%);color:var(--ink)}
+header{background:rgba(255,250,252,.94);border-bottom:2px solid #efc6d7;box-shadow:0 5px 20px #a85b7710}
+.brand b,.drawer-profile b,.section-title,.modalhead h2{color:#874762}
+.brand small,.drawer-profile small{color:#907a87}
+.menu-trigger,.navlinks button,.iconbtn,.close{background:#ffe7f0;color:#874762;border:1px solid #f4cbdc}
+.wa,.wa-strip-button{background:#d9789f!important;color:#fff!important}
+.side-drawer{background:#fff8fb;box-shadow:12px 0 35px #78455b20}
+.drawer-profile{border-bottom:1px solid #f0d2df}
+.drawer-profile img{border-color:#f0cbd9}
+.drawer-link{color:#65485a;border-radius:18px}
+.drawer-link:active,.drawer-link:hover{background:#ffedf3;color:#914e6c}
+.drawer-note{background:#ffedf3;color:#89516a;border:1px solid #f4d3df}
+main{background:transparent}
+.hero{background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(255,239,246,.91));border:1.5px solid #f1cbd9;box-shadow:0 14px 36px #a85b7718}
+.hero:before,.hero:after,.hero-logo:before,.hero-logo:after{filter:drop-shadow(0 2px 4px #e7b5c9)}
+.kicker{background:#fff4f8;color:#9a5472;border-color:#f2cada}
+.hero h1{color:#80445f;text-shadow:none}
+.hero p{color:#765e6c;text-shadow:none}
+.primary{background:linear-gradient(135deg,#ed91b4,#cf6f99);color:#fff;box-shadow:0 8px 18px #c66d9328}
+.secondary{background:#fff;color:#8b506c;border:1px solid #efcbd9}
+.hero-logo img{border-color:#fff;box-shadow:0 12px 30px #b66a8a22}
+.intro,.product,.info-guide button{background:rgba(255,255,255,.92);border:1px solid #f0cbd9;color:#674b5b;box-shadow:0 8px 22px #a85b7710}
+.section-title{color:#914e6c}
+.section-title span{background:#ffe7f0;color:#914e6c}
+.cat{border-color:#f0cbd9;color:#8b4967;background:#fff}
+.cat.active{background:#df86a8;color:#fff;border-color:#df86a8}
+.searchrow input,.field input,.field select,.field textarea,.sheet-tools input,.sheet-tools select{border-color:#edcbd9;background:#fffafd;color:#553d4b}
+.searchrow label,.field label{color:#8b4967}
+.product-art{background:linear-gradient(145deg,#fff0f5,#f9dce8)}
+.tag{color:#8b4967;background:#fff5f8}
+.product h3,.price{color:#75435b}
+.product p,footer{color:#8a7180}
+.product button{background:#ffe7f0;color:#874762}
+.modalbg{background:#57394c88}
+.modal{background:#fff9fc;border:1px solid #f1ccda;box-shadow:0 18px 55px #58304425}
+.cartline{border-color:#f1d8e2}
+.info-guide button{color:#80445f}
+.info-guide button small{color:#8b7480}
+.wa-strip{background:linear-gradient(90deg,#ffe5ef,#fff5f8,#fbe7f0);border-color:#f0cbd9;color:#8b4967}
+.sheet-stats>div{background:#fff0f5;border-color:#f0cbd9}
+.sheet-stats small,.sheet-muted,.sheet-empty{color:#8a7180}
+.sheet-stats b{color:#874762}
+.sheet-wrap{border-color:#f0cbd9;background:#fffafd}
+.orders-sheet th{background:#fce5ee;color:#874762}
+.orders-sheet td{border-color:#f4e0e8}
+.orders-sheet tr:nth-child(even) td{background:#fff6f9}
+.sheet-action{background:#ffe7f0;color:#874762;border-color:#f0cbd9}
+.sheet-status{background:#fce5ee;color:#874762}
+/* Owner panel sections become tidy rounded cards */
+.modal h3{color:#874762;margin:22px 0 10px;padding:11px 14px;background:#fff0f5;border:1px solid #f2d2df;border-radius:16px;font-size:15px}
+.modal p{color:#6d5664;line-height:1.55}
+.modal .field{background:#fffafd;border:1px solid #f5e0e8;border-radius:14px;padding:10px}
+.modal .field label{letter-spacing:.25px}
+.modal button{transition:transform .15s,filter .15s}
+.modal button:active{transform:scale(.98)}
+@media(max-width:760px){
+ body{background:linear-gradient(180deg,#fff8fb,#fff0f5)}
+ main{padding:16px 14px 55px}
+ .hero{border-radius:26px}
+ .side-drawer{background:#fff8fb}
+ .modal{border-radius:24px;padding:18px}
+ .modal h3{margin-top:18px}
+}
+
+
+/* Extra customer info + quick links */
+.info-guide .guide-icon{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#fff0f5;color:#9a5472;font-size:27px;font-weight:900}
+.extra-info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:22px 0}
+.extra-card{display:flex;align-items:center;gap:14px;text-align:left;padding:18px 20px;border-radius:24px;background:#fff;border:1.5px solid #f0cbd9;color:#65485a;box-shadow:0 8px 22px #a85b7710;min-height:92px}
+.extra-card b{display:block;font-size:17px;color:#874762}.extra-card small{display:block;margin-top:4px;color:#907a87;font-size:12px;line-height:1.4}
+.extra-diamond{display:grid;place-items:center;flex:0 0 44px;height:44px;border-radius:15px;background:#ffe7f0;color:#a95679;font-size:31px;font-weight:900}
+.quick-links{margin:22px 0 28px;padding:20px;border:1.5px solid #f0cbd9;border-radius:25px;background:#fff9fc;box-shadow:0 8px 22px #a85b7710}
+.quick-title{margin:0 0 14px;color:#874762;font-size:16px;letter-spacing:1px}.quick-title span{font-size:25px;margin-right:7px}
+.quick-grid{display:flex;flex-wrap:wrap;gap:10px}.quick-grid button{flex:1 1 180px;min-height:48px;padding:12px 15px;border-radius:24px;background:#fff;color:#874762;border:1.5px solid #f0cbd9;font-weight:850;font-size:12px}.quick-grid button span{font-size:18px;margin-right:6px}.quick-grid .quick-link-main{background:#e58aad;color:#fff;border-color:#e58aad}
+@media(max-width:600px){.extra-info{grid-template-columns:1fr;gap:10px}.extra-card{min-height:80px;padding:15px 16px}.quick-links{padding:16px}.quick-grid{display:grid;grid-template-columns:1fr}.quick-grid button{width:100%;text-align:center}}
+
+/* Mandatory customer access gate */
+.access-gate{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:22px;background:linear-gradient(145deg,#fff5f9f2,#fce8f1f5);backdrop-filter:blur(10px)}
+.access-gate.show{display:flex}.access-card{width:min(460px,100%);padding:28px 24px;border:1.5px solid #edc5d5;border-radius:30px;background:#fffdfd;box-shadow:0 18px 55px #8e52651f;text-align:center}.access-card img{width:94px;height:94px;object-fit:cover;border-radius:50%;border:4px solid #ffe4ee;margin-bottom:10px}.access-card h2{margin:8px 0;color:#82465f}.access-card p{color:#8a7480;line-height:1.5}.access-card .field{text-align:left;margin:14px 0}.access-card input{width:100%;box-sizing:border-box;padding:15px;border:1px solid #e9cad7;border-radius:15px;background:#fffafd;font-size:16px}.access-card button{width:100%;margin-top:10px}.access-card .owner-entry{background:#fff;color:#874762;border:1px solid #e9cad7}
+</style>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="GO MERCHKPOP">
+<link rel="apple-touch-icon" href="logo-gomerchkpop.jpg">
+
+</head>
+<body>
+<header><div class="nav">
+<button class="menu-trigger" onclick="toggleDrawer(true)" aria-label="Buka menu">☰</button><div class="brand"><img src="logo-gomerchkpop.jpg" alt="Logo GO MERCHKPOP"><div><b>GO MERCHKPOP 🌿</b><small id="brandTagline">Your K-Pop Merch Store</small><small id="brandDescription"></small></div></div>
+<div class="navlinks"><button onclick="scrollToShop()">⌂ Beranda</button><button onclick="scrollToShop()">▦ Katalog</button><button onclick="openLogin()">Login Buyer</button><button onclick="openOwnerLogin()">Owner</button></div>
+<button class="iconbtn" onclick="openCart()" aria-label="Keranjang">🛒 <span id="cartCount">0</span></button>
+</div></header>
+<div class="wa-strip" role="region" aria-label="Kontak WhatsApp toko">
+  <div class="wa-strip-track"><span>🍓 Ada pertanyaan tentang pesanan?</span><span>♡ Chat GO MERCHKPOP melalui WhatsApp</span><span>🍒 Kami siap membantu kamu!</span></div>
+  <button class="wa-strip-button" onclick="contactAdmin()">☏ WhatsApp</button>
+</div>
+<div class="drawer-shade" id="drawerShade" onclick="toggleDrawer(false)"></div>
+<aside class="side-drawer" id="sideDrawer" aria-label="Menu utama">
+ <div class="drawer-profile"><img class="drawer-logo" src="logo-gomerchkpop.jpg" alt="Logo toko"><div><b id="drawerShopName">GO MERCHKPOP 🍓</b><small id="drawerTagline">Your K-Pop Merch Store</small><small id="drawerDescription"></small></div></div>
+ <button class="drawer-link" onclick="drawerGo('home')"><span>⌂</span>Beranda</button>
+ <button class="drawer-link" onclick="drawerGo('catalog')"><span>▦</span>Katalog</button>
+ <button class="drawer-link" onclick="drawerGo('cart')"><span>🛒</span>Keranjang</button>
+ <button class="drawer-link" onclick="drawerGo('buyer')"><span>♙</span>Login Buyer</button>
+ <button class="drawer-link" onclick="drawerGo('orders')"><span>♡</span>Cek Pesanan</button>
+ <button class="drawer-link" onclick="drawerGo('owner')"><span>⚙</span>Owner</button>
+ <button class="drawer-link" id="ownerRecapLink" style="display:none" onclick="drawerGo('recap')"><span>📊</span>Rekapan Pembelian (Owner)</button>
+ <button class="drawer-link" onclick="drawerGo('wa')"><span>☏</span>WhatsApp</button>
+ <div class="drawer-note">🍓 Selamat berbelanja di GO MERCHKPOP!<br>Geser dari tepi kiri layar untuk membuka menu.</div>
+</aside>
+<main>
+<section class="hero">
+<div><span class="kicker">🍓 YOUR HAPPY K-POP MERCH CORNER 🍒</span><h1>Sweet Finds,<br>Happy K-Popers!</h1><p>Temukan merch K-Pop favoritmu dengan cara yang mudah dan menyenangkan. Yuk, berburu album, photocard, lightstick, dan koleksi gemas lainnya!</p></div>
+<div class="hero-logo"><img src="logo-gomerchkpop.jpg" alt="Maskot GO MERCHKPOP"></div>
+</section>
+<section class="info-guide" aria-label="Informasi belanja GO MERCHKPOP">
+ <button onclick="openInfoPage('terms')"><span class="guide-icon">◇</span><b>Syarat & Ketentuan</b><small>Klik untuk membaca aturan belanja</small></button>
+ <button onclick="openInfoPage('shopping')"><span class="guide-icon">◇</span><b>Cara Jajan</b><small>Kenali cara memilih merch favoritmu</small></button>
+ <button onclick="openInfoPage('checkout')"><span class="guide-icon">◇</span><b>Cara Checkout</b><small>Ikuti langkah membuat pesanan</small></button>
+</section>
+
+<section class="extra-info" aria-label="Rekapan dan pembayaran GO MERCHKPOP">
+  <button class="extra-card" onclick="openBuyerRecap()"><span class="extra-diamond">◇</span><span><b>Rekapan</b><small>Lihat ringkasan pesanan dan pembayaran akunmu</small></span></button>
+  <button class="extra-card" onclick="openInfoPage('payment')"><span class="extra-diamond">◇</span><span><b>Payment GO MERCHKPOP</b><small>Informasi rekening dan cara pembayaran</small></span></button>
+</section>
+<section class="quick-links" aria-label="Quick Links GO MERCHKPOP">
+  <h2 class="quick-title"><span>◇</span> QUICK LINKS</h2>
+  <div class="quick-grid">
+    <button class="quick-link-main" onclick="openQuickLink('co')"><span>◇</span> LINK CO</button>
+    <button onclick="openQuickLink('bill')"><span>◇</span> LINK TAGIHAN PELUNASAN</button>
+    <button onclick="openQuickLink('box')"><span>◇</span> LINK BOX BARANG OTW INDO</button>
+  </div>
+</section>
+
+<section id="promoBanner" style="margin:22px 0;border-radius:24px;overflow:hidden;background:linear-gradient(110deg,#dcebd9,#f4e9e8);border:1px solid var(--line);min-height:150px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 26px">
+ <div style="max-width:65%"><span class="kicker">PROMO GO MERCHKPOP</span><h2 id="promoTitle" style="color:var(--deep);margin:10px 0 5px;font-size:clamp(20px,3vw,30px)">Promo spesial untuk K-Popers!</h2><p id="promoText" style="color:#596d5e;margin:0 0 12px">Temukan merch favoritmu di sini.</p><button id="promoButton" class="primary" onclick="promoAction()">Lihat Promo</button></div>
+ <img id="promoImage" src="logo-gomerchkpop.jpg" alt="Banner promosi" style="width:145px;height:120px;object-fit:cover;border-radius:18px;border:4px solid #ffffffaa">
+</section>
+<div class="intro"><div>🌱 <b>Hai, K-Popers!</b><br>Belanja merch kesayanganmu dalam suasana yang nyaman dan menyenangkan.</div></div>
+<section id="shopArea" style="display:none">
+<h2 class="section-title"><span>✦ Kategori</span></h2>
+<div class="categories" id="categories"></div>
+<div class="searchrow"><input id="search" placeholder="⌕ Cari album, photocard, lightstick..." oninput="renderProducts()"><label>✨ Banyak pilihan untuk kamu! ♡</label></div>
+<div class="products" id="products"></div>
+</section>
+</main>
+<footer>© <span id="year"></span> GO MERCHKPOP · Made with ♡ for K-Pop fans</footer>
+<div class="access-gate" id="accessGate" role="dialog" aria-modal="true" aria-label="Login Customer">
+ <div class="access-card">
+  <img src="logo-gomerchkpop.jpg" alt="Logo GO MERCHKPOP">
+  <h2>Selamat Datang di GO MERCHKPOP</h2>
+  <p>Untuk masuk ke website, silakan isi nama dan kode Buyer yang sudah diberikan Owner.</p>
+  <div class="field"><label for="gateBuyerName">NAMA CUSTOMER</label><input id="gateBuyerName" autocomplete="name" placeholder="Masukkan nama sesuai akun"></div>
+  <div class="field"><label for="gateBuyerCode">KODE CUSTOMER</label><input id="gateBuyerCode" autocomplete="off" placeholder="Masukkan kode dari Owner"></div>
+  <button class="primary" onclick="gateBuyerLogin()">Masuk ke Website</button>
+  <button class="owner-entry" onclick="ownerEntryFromGate()">Login sebagai Owner</button>
+  <small style="display:block;margin-top:14px;color:#9b8791">Akses Customer akan berakhir saat tab website ditutup.</small>
+ </div>
+</div>
+<div class="modalbg" id="modalbg" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modalhead"><h2 id="modalTitle">GO MERCHKPOP</h2><button class="close" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div>
+<script>
+const categories=['Semua','Album','Photocard','Lightstick','Merchandise','Aksesoris'];
+const rupiah=n=>'Rp'+Number(n).toLocaleString('id-ID');
+const get=(k,d)=>{try{return JSON.parse(localStorage.getItem('gomk_'+k))??d}catch{return d}};
+const put=(k,v)=>localStorage.setItem('gomk_'+k,JSON.stringify(v));
+let products=get('products',[
+{id:1,name:'Album K-Pop',cat:'Album',price:185000,emoji:'💿',desc:'Album pilihan untuk koleksi kamu',variants:['Random','Member pilihan']},
+{id:2,name:'Photocard Set',cat:'Photocard',price:45000,emoji:'🃏',desc:'Photocard untuk melengkapi koleksi',variants:['1 pc','Set 5 pcs']},
+{id:3,name:'Lightstick',cat:'Lightstick',price:520000,emoji:'💡',desc:'Teman konser favoritmu',variants:['Official','Pre-order']},
+{id:4,name:'Keychain Cute',cat:'Aksesoris',price:35000,emoji:'🔑',desc:'Aksesoris lucu untuk tas kamu',variants:['Random','Pilihan desain']},
+{id:5,name:'Tote Bag K-Pop',cat:'Merchandise',price:75000,emoji:'👜',desc:'Tote bag untuk kegiatan sehari-hari',variants:['Cream','Sage green']},
+{id:6,name:'Mini Poster Set',cat:'Merchandise',price:55000,emoji:'🖼️',desc:'Dekorasi kamar bertema K-Pop',variants:['A4','A5']}
+]);
+let selected='Semua',cart=[],currentBuyer=sessionStorage.getItem('gomk_buyerSession')||null,ownerAuthenticated=get('ownerSession',false);
+let buyers=get('buyers',[{name:'Nadia',code:'NADIA01'},{name:'Aulia',code:'AULIA01'}]);
+let orders=get('orders',[]);
+let notices=get('notices',[]);
+if(currentBuyer&&!buyers.some(b=>b.name.toLowerCase()===String(currentBuyer).toLowerCase())){currentBuyer=null;sessionStorage.removeItem('gomk_buyerSession')}
+let settings=get('settings',{wa:'',recap:''});
+function drawCategories(){document.getElementById('categories').innerHTML=categories.map(c=>`<button class="cat ${selected===c?'active':''}" onclick="selected='${c}';drawCategories();renderProducts()">${c}</button>`).join('')}
+function renderProducts(){let q=document.getElementById('search').value.toLowerCase();let list=products.filter(p=>(selected==='Semua'||p.cat===selected)&&(p.name+' '+p.desc+' '+p.cat).toLowerCase().includes(q));document.getElementById('products').innerHTML=list.length?list.map(p=>`<article class="product"><div class="product-art"><span class="tag">${p.cat}</span>${p.emoji}</div><h3>${p.name}</h3><p>${p.desc}</p><div class="price">${rupiah(p.price)}</div><button onclick="chooseProduct(${p.id})">Pilih Varian ›</button></article>`).join(''):'<div class="empty">Produk tidak ditemukan.</div>'}
+function escapeHTML(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
+function openInfoPage(kind){
+ const pages={
+  terms:{title:'Syarat & Ketentuan',text:settings.infoTerms||'1. Pastikan nama dan kode buyer sudah benar.\n2. Periksa nama produk, varian, dan jumlah sebelum checkout.\n3. Pesanan diproses setelah dikonfirmasi Owner.\n4. Pembayaran mengikuti informasi tagihan pada akun Buyer.\n5. Hubungi Owner melalui WhatsApp jika membutuhkan bantuan.'},
+  shopping:{title:'Cara Jajan di GO MERCHKPOP',text:settings.infoShopping||'1. Buka menu Katalog.\n2. Pilih kategori produk yang kamu suka.\n3. Cari produk, lalu baca deskripsi dan harga.\n4. Pilih varian dan jumlah produk.\n5. Masukkan produk ke keranjang.'},
+  checkout:{title:'Cara Checkout di GO MERCHKPOP',text:settings.infoCheckout||'1. Buka keranjang dan periksa pesananmu.\n2. Masukkan nama dan kode Buyer dari Owner.\n3. Tekan Buat Pesanan.\n4. Login Buyer untuk melihat tagihan dan status pesanan.\n5. Lakukan pembayaran sesuai instruksi dan unggah bukti transfer jika diminta.'},
+  payment:{title:'Payment GO MERCHKPOP',text:settings.paymentInfo||'Informasi pembayaran akan diperbarui oleh Owner. Silakan cek kembali sebelum melakukan transfer.'}
+ };
+ const page=pages[kind];if(!page)return;
+ openModal(page.title,`<div style="white-space:pre-line;line-height:1.8;color:var(--ink)">${escapeHTML(page.text)}</div>`);
+}
+function openBuyerRecap(){
+ if(!currentBuyer){openLogin();return;}
+ showRecap('buyer');
+}
+function openQuickLink(kind){
+ const map={co:['quickCO','Link CO'],bill:['quickBill','Link Tagihan Pelunasan'],box:['quickBox','Link Box Barang OTW Indo']};
+ const [key,label]=map[kind]||[];const url=(settings[key]||'').trim();
+ if(!url){alert(label+' belum diatur Owner.');return;}
+ if(!/^https?:\/\//i.test(url)){alert('Link harus diawali http:// atau https://');return;}
+ window.open(url,'_blank','noopener');
+}
+function saveInfoPages(){
+ settings.infoTerms=document.getElementById('editTermsText').value.trim();
+ settings.infoShopping=document.getElementById('editShoppingText').value.trim();
+ settings.infoCheckout=document.getElementById('editCheckoutText').value.trim();
+ const paymentEditor=document.getElementById('editPaymentInfo');if(paymentEditor)settings.paymentInfo=paymentEditor.value.trim();
+ put('settings',settings);alert('Informasi customer berhasil disimpan di perangkat ini.');ownerPanel();
+}
+function showAccessGate(){const g=document.getElementById('accessGate');if(g){g.classList.add('show');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('gateBuyerName')?.focus(),80)}}
+function hideAccessGate(){const g=document.getElementById('accessGate');if(g)g.classList.remove('show');document.body.style.overflow=''}
+function gateBuyerLogin(){const n=document.getElementById('gateBuyerName').value.trim(),c=document.getElementById('gateBuyerCode').value.trim();if(!n||!c){alert('Isi nama dan kode Buyer terlebih dahulu.');return}if(!buyers.some(b=>b.name.toLowerCase()===n.toLowerCase()&&b.code===c)){alert('Nama atau kode tidak cocok dengan data Owner. Silakan periksa kembali.');return}currentBuyer=n;sessionStorage.setItem('gomk_buyerSession',n);hideAccessGate();window.scrollTo({top:0,behavior:'instant'});}
+function ownerEntryFromGate(){hideAccessGate();openOwnerLogin()}
+function buyerLogout(){currentBuyer=null;sessionStorage.removeItem('gomk_buyerSession');cart=[];updateCart();closeModal();showAccessGate()}
+function openModal(title,body){document.getElementById('modalTitle').textContent=title;document.getElementById('modalBody').innerHTML=body;document.getElementById('modalbg').classList.add('show');setTimeout(()=>{let t=document.getElementById('editTheme');if(t)t.value=settings.theme||'sage';renderAdminProducts()},0)}
+function closeModal(){document.getElementById('modalbg').classList.remove('show');if(!currentBuyer&&!ownerAuthenticated)showAccessGate()}
+function chooseProduct(id){let p=products.find(x=>x.id===id);openModal(p.name,`<p>${p.desc}</p><div class="field"><label>PILIH VARIAN</label><select id="variant">${p.variants.map(v=>`<option>${v}</option>`).join('')}</select></div><div class="field"><label>JUMLAH</label><input id="qty" type="number" min="1" value="1"></div><b>${rupiah(p.price)}</b><p><button class="primary" style="width:100%;margin-top:14px" onclick="addCart(${id})">Tambahkan ke Keranjang</button></p>`)}
+function addCart(id){let p=products.find(x=>x.id===id),v=document.getElementById('variant').value,q=Math.max(1,Number(document.getElementById('qty').value)||1);let old=cart.find(x=>x.id===id&&x.variant===v);if(old)old.qty+=q;else cart.push({id,variant:v,qty:q});updateCart();closeModal()}
+function updateCart(){document.getElementById('cartCount').textContent=cart.reduce((s,x)=>s+x.qty,0)}
+function openCart(){let total=cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0);openModal('Keranjang Belanja',cart.length?cart.map(x=>{let p=products.find(p=>p.id===x.id);return `<div class="cartline"><div><b>${p.name}</b><br>${x.variant} × ${x.qty}</div><b>${rupiah(p.price*x.qty)}</b></div>`}).join('')+`<h3>Total: ${rupiah(total)}</h3>${currentBuyer?`<p>Nama pembeli: <b>${escapeHTML(currentBuyer)}</b> ✓ <small>Login tersimpan di perangkat ini.</small></p>`:`<div class="field"><label>NAMA PEMBELI</label><input id="buyerName" placeholder="Nama sesuai akun buyer"></div><div class="field"><label>KODE PEMBELI</label><input id="buyerCode" placeholder="Kode dari owner"></div>`}<hr><h3>Informasi Pembayaran 🍓</h3><div class="field"><label>JENIS PEMBAYARAN</label><select id="paymentType" onchange="updatePaymentAmount(${total})"><option value="DP">DP (Uang Muka)</option><option value="Full Payment">Full Payment (Lunas)</option></select></div><div class="field"><label>NOMINAL TRANSFER (RP)</label><input id="paymentAmount" type="number" min="1" max="${total}" placeholder="Masukkan nominal transfer"></div><div class="field"><label>TRANSFER KE PLATFORM PEMBAYARAN</label><select id="paymentPlatform"><option value="BCA">BCA</option><option value="BRI">BRI</option><option value="BNI">BNI</option><option value="Mandiri">Mandiri</option><option value="DANA">DANA</option><option value="GoPay">GoPay</option><option value="OVO">OVO</option><option value="ShopeePay">ShopeePay</option><option value="Lainnya">Lainnya</option></select></div><div class="field"><label>JIKA LAINNYA, TULIS PLATFORM</label><input id="paymentPlatformOther" placeholder="Nama bank / e-wallet (opsional)"></div><div class="field"><label>BUKTI TRANSFER</label><input id="checkoutProof" type="file" accept="image/*"><small>Unggah foto atau screenshot bukti transfer.</small></div><button class="primary" style="width:100%" onclick="checkout()">Kirim Pesanan & Bukti Transfer</button>`:'<div class="empty">Keranjangmu masih kosong 🌿</div>')}
+function updatePaymentAmount(total){let type=document.getElementById('paymentType')?.value,field=document.getElementById('paymentAmount');if(field&&type==='Full Payment')field.value=total;else if(field&&type==='DP')field.value=''}
+function checkout(){let n=currentBuyer,c='';if(!n){n=document.getElementById('buyerName').value.trim();c=document.getElementById('buyerCode').value.trim();if(!buyers.some(b=>b.name.toLowerCase()===n.toLowerCase()&&b.code===c)){alert('Nama atau kode buyer belum terdaftar. Minta owner membuat akun terlebih dahulu.');return}currentBuyer=n;sessionStorage.setItem('gomk_buyerSession',n)}let items=cart.map(x=>{let p=products.find(p=>p.id===x.id);return {name:p.name,variant:x.variant,qty:x.qty,price:p.price}}),total=items.reduce((s,x)=>s+x.price*x.qty,0),paymentType=document.getElementById('paymentType').value,amount=Number(document.getElementById('paymentAmount').value),platform=document.getElementById('paymentPlatform').value,other=document.getElementById('paymentPlatformOther').value.trim(),file=document.getElementById('checkoutProof').files[0];if(!amount||amount<1||amount>total){alert('Masukkan nominal transfer yang benar.');return}if(paymentType==='Full Payment'&&amount!==total){alert('Untuk Full Payment, nominal transfer harus sama dengan total pesanan.');return}if(paymentType==='DP'&&amount>=total){alert('Nominal DP harus lebih kecil dari total pesanan. Jika membayar lunas, pilih Full Payment.');return}if(!file){alert('Silakan unggah bukti transfer terlebih dahulu.');return}if(!file.type.startsWith('image/')){alert('Bukti transfer harus berupa gambar.');return}let reader=new FileReader();reader.onload=()=>{let order={id:'GM'+Date.now().toString().slice(-7),buyer:n,items,total,paid:0,status:'Menunggu verifikasi pembayaran',proof:reader.result,proofAmount:amount,paymentType,paymentPlatform:platform==='Lainnya'?(other||'Lainnya'):platform,date:new Date().toLocaleString('id-ID')};orders.unshift(order);put('orders',orders);notices.unshift({to:n,text:`Pesanan ${order.id} berhasil dibuat. ${paymentType} ${rupiah(amount)} melalui ${order.paymentPlatform} menunggu verifikasi Owner.`});notices.unshift({to:'Owner',text:`Pesanan baru ${order.id} dari ${n}: ${paymentType} ${rupiah(amount)} melalui ${order.paymentPlatform}.`});put('notices',notices);cart=[];updateCart();closeModal();alert('Pesanan dan bukti transfer berhasil dikirim. Tunggu konfirmasi Owner, ya!');if(settings.wa){let msg=`Halo GO MERCHKPOP, pesanan ${order.id} atas nama ${n}. ${paymentType}: ${rupiah(amount)} melalui ${order.paymentPlatform}. Bukti transfer sudah diunggah.`;window.open('https://wa.me/'+settings.wa.replace(/\D/g,'')+'?text='+encodeURIComponent(msg),'_blank')}};reader.readAsDataURL(file)}
+function openLogin(){if(currentBuyer){buyerPanel();return}openModal('Login Buyer',`<p>Masukkan nama dan kode pembeli yang diberikan owner.</p><div class="field"><label>NAMA PEMBELI</label><input id="loginName" placeholder="Nama sesuai akun"></div><div class="field"><label>KODE PEMBELI</label><input id="loginCode" placeholder="Kode pembeli"></div><button class="primary" style="width:100%" onclick="buyerLogin()">Masuk</button>`)}
+function buyerLogin(){let n=document.getElementById('loginName').value.trim(),c=document.getElementById('loginCode').value.trim();if(!buyers.some(b=>b.name.toLowerCase()===n.toLowerCase()&&b.code===c)){alert('Nama atau kode tidak cocok.');return}currentBuyer=n;sessionStorage.setItem('gomk_buyerSession',n);buyerPanel()}
+function buyerPanel(){let mine=orders.filter(o=>o.buyer.toLowerCase()===currentBuyer.toLowerCase()),myNotices=notices.filter(x=>x.to===currentBuyer||x.to==='Semua');openModal('Dashboard Buyer',`<p>Halo, <b>${currentBuyer}</b> 🌿</p><h3>Rekapan Pesanan</h3><button class="secondary" onclick="showRecap('buyer')">Lihat Rekapan Lengkap</button>${mine.length?mine.map(o=>`<div class="item" style="margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:14px"><b>${o.id}</b><br>${o.items.map(i=>i.name+' · '+i.variant+' ×'+i.qty).join('<br>')}<p><b>Status pembayaran:</b> ${o.status}</p><p><b>Perjalanan Pre-Order:</b> ${o.shippingStage||'Menunggu barang diorderkan'}</p>${o.boxNumber?`<p><b>Nomor Box:</b> ${o.boxNumber}</p>`:''}${o.shippingNote?`<p>${o.shippingNote}</p>`:''}${o.shippingPhoto?`<p><b>Foto barang sebelum dikirim:</b><br><img src="${o.shippingPhoto}" alt="Foto barang" style="width:100%;max-width:230px;border-radius:12px;margin-top:6px"></p>`:''}<small>Total ${rupiah(o.total)} · Dibayar ${rupiah(o.paid)} · Sisa ${rupiah(o.total-o.paid)}</small>${o.proof?'<br><small>✓ Bukti transfer sudah dikirim</small>':''}<p><button class="secondary" onclick="payOrder('${o.id}')">Pelunasan</button></p></div>`).join(''):'<p>Belum ada pesanan.</p>'}<h3>Notifikasi</h3>${myNotices.length?myNotices.map(x=>`<p>🔔 ${x.text}</p>`).join(''):'<p>Belum ada notifikasi.</p>'}<button class="secondary" onclick="buyerLogout()">Keluar</button>`)}
+function payOrder(id){let o=orders.find(x=>x.id===id);openModal('Pelunasan '+id,`<p>Total tagihan: <b>${rupiah(o.total-o.paid)}</b></p><div class="field"><label>JUMLAH TRANSFER</label><input id="payAmount" type="number" min="1" max="${o.total-o.paid}" value="${o.total-o.paid}"></div><div class="field"><label>UNGGAH BUKTI TRANSFER</label><input id="proofFile" type="file" accept="image/*"></div><button class="primary" style="width:100%" onclick="submitProof('${id}')">Kirim Bukti Transfer</button>`)}
+function submitProof(id){let f=document.getElementById('proofFile').files[0],amount=Number(document.getElementById('payAmount').value);if(!f){alert('Pilih foto bukti transfer.');return}let o=orders.find(x=>x.id===id);if(amount<1||amount>o.total-o.paid){alert('Jumlah transfer tidak valid.');return}let reader=new FileReader();reader.onload=()=>{o.proof=reader.result;o.proofAmount=amount;o.status='Menunggu verifikasi pembayaran';put('orders',orders);notices.unshift({to:'Owner',text:`Bukti transfer baru dari ${o.buyer} untuk ${o.id}.`});put('notices',notices);buyerPanel()};reader.readAsDataURL(f)}
+function openOwnerLogin(){if(ownerAuthenticated){document.getElementById('ownerRecapLink').style.display='flex';ownerPanel();return}openModal('Login Owner',`<p>Masuk ke area pengelolaan toko.</p><div class="field"><label>PIN OWNER</label><input id="ownerPin" type="password" placeholder="PIN owner"></div><button class="primary" style="width:100%" onclick="ownerLogin()">Masuk Owner</button><small>PIN demo awal: 123456. Ganti setelah mencoba.</small>`)}
+function ownerLogin(){const entered=document.getElementById('ownerPin').value;if(entered!==(get('ownerPin','123456'))){alert('PIN Owner salah. Untuk login pertama gunakan 123456. Jika sudah pernah mengganti PIN, gunakan PIN terbaru.');return}ownerAuthenticated=true;put('ownerSession',true);hideAccessGate();document.getElementById('ownerRecapLink').style.display='flex';ownerPanel()}
+function ownerPanel(){openModal('Dashboard Owner',`<h3>Ringkasan</h3><p>Pembeli: <b>${buyers.length}</b> · Pesanan: <b>${orders.length}</b> · Pembayaran masuk: <b>${rupiah(orders.reduce((s,o)=>s+o.paid,0))}</b></p><h3>Tambah Buyer</h3><div class="field"><label>NAMA</label><input id="newBuyer" placeholder="Nama buyer"></div><div class="field"><label>KODE</label><input id="newCode" placeholder="Contoh: BUYER01"></div><button class="secondary" onclick="addBuyer()">Simpan Buyer</button><h3>Pengaturan Website & Profil Toko</h3>
+<div class="field"><label>NAMA TOKO</label><input id="editShopName" value="${settings.shopName||'GO MERCHKPOP'}"></div>
+<div class="field"><label>TAGLINE DI DEKAT PROFIL</label><input id="editTagline" value="${settings.tagline||'Your K-Pop Merch Store'}"></div>
+<div class="field"><label>DESKRIPSI SINGKAT DI DEKAT PROFIL</label><input id="editProfileDesc" value="${settings.profileDesc||'Tempat berburu merch K-Pop favoritmu.'}" placeholder="Tulis deskripsi singkat toko"></div>
+<div class="field"><label>JUDUL BERANDA</label><input id="editHeroTitle" value="${settings.heroTitle||'Welcome to GO MERCHKPOP!'}"></div>
+<div class="field"><label>DESKRIPSI BERANDA</label><input id="editHeroDesc" value="${settings.heroDesc||'Temukan merch K-Pop favoritmu dengan mudah. Pilih produk, tentukan varian, masukkan ke keranjang, lalu lanjutkan pesanan.'}"></div>
+<div class="field"><label>TEKS SAMBUTAN</label><input id="editWelcome" value="${settings.welcome||'Hai, K-Popers!'}"></div>
+<div class="field"><label>PILIH TEMA WARNA WEBSITE</label><select id="editTheme"><option value="sage">Soft Sage Green</option><option value="mint">Mint Pastel</option><option value="olive">Soft Olive</option><option value="cream">Cream Green</option><option value="lavender">Soft Lavender</option></select><small>Warna tampilan website akan berubah setelah disimpan.</small></div>
+<div class="field"><label>GANTI LOGO / FOTO PROFIL TOKO</label><input id="editLogoFile" type="file" accept="image/*"></div>
+<button class="secondary" onclick="saveWebsiteProfile()">Simpan Profil & Tema</button>
+<h3>Informasi untuk Customer</h3>
+<p style="font-size:12px;color:var(--muted)">Owner dapat mengubah isi teks yang muncul saat customer menekan tombol informasi di halaman depan.</p>
+<div class="field"><label>SYARAT & KETENTUAN</label><textarea id="editTermsText">${escapeHTML(settings.infoTerms||'1. Pastikan nama dan kode buyer sudah benar.\n2. Periksa nama produk, varian, dan jumlah sebelum checkout.\n3. Pesanan diproses setelah dikonfirmasi Owner.\n4. Pembayaran mengikuti informasi tagihan pada akun Buyer.\n5. Hubungi Owner melalui WhatsApp jika membutuhkan bantuan.')}</textarea></div>
+<div class="field"><label>CARA JAJAN DI GO MERCHKPOP</label><textarea id="editShoppingText">${escapeHTML(settings.infoShopping||'1. Buka menu Katalog.\n2. Pilih kategori produk yang kamu suka.\n3. Cari produk, lalu baca deskripsi dan harga.\n4. Pilih varian dan jumlah produk.\n5. Masukkan produk ke keranjang.')}</textarea></div>
+<div class="field"><label>CARA CHECKOUT DI GO MERCHKPOP</label><textarea id="editCheckoutText">${escapeHTML(settings.infoCheckout||'1. Buka keranjang dan periksa pesananmu.\n2. Masukkan nama dan kode Buyer dari Owner.\n3. Tekan Buat Pesanan.\n4. Login Buyer untuk melihat tagihan dan status pesanan.\n5. Lakukan pembayaran sesuai instruksi dan unggah bukti transfer jika diminta.')}</textarea></div>
+<div class="field"><label>INFORMASI PAYMENT GO MERCHKPOP</label><textarea id="editPaymentInfo">${escapeHTML(settings.paymentInfo||'Silakan transfer sesuai nominal tagihan yang tertera pada pesanan. Pilih DP atau Full Payment, lalu unggah bukti transfer melalui checkout.')}</textarea></div>
+<button class="secondary" onclick="saveInfoPages()">Simpan Informasi Customer & Payment</button>
+<h3>Quick Links Customer</h3>
+<p style="font-size:12px;color:var(--muted)">Masukkan alamat link tujuan. Tombol akan tampil di beranda customer.</p>
+<div class="field"><label>LINK CO</label><input id="editQuickCO" value="${escapeHTML(settings.quickCO||'')}" placeholder="https://..."></div>
+<div class="field"><label>LINK TAGIHAN PELUNASAN</label><input id="editQuickBill" value="${escapeHTML(settings.quickBill||'')}" placeholder="https://..."></div>
+<div class="field"><label>LINK BOX BARANG OTW INDO</label><input id="editQuickBox" value="${escapeHTML(settings.quickBox||'')}" placeholder="https://..."></div>
+<button class="secondary" onclick="saveQuickLinks()">Simpan Quick Links</button>
+<h3>Banner Promosi Website</h3>
+<div class="field"><label>JUDUL BANNER</label><input id="editPromoTitle" value="${settings.promoTitle||'Promo spesial untuk K-Popers!'}"></div>
+<div class="field"><label>DESKRIPSI PROMO</label><input id="editPromoText" value="${settings.promoText||'Temukan merch favoritmu di sini.'}"></div>
+<div class="field"><label>TEKS TOMBOL</label><input id="editPromoButton" value="${settings.promoButton||'Lihat Promo'}"></div>
+<div class="field"><label>LINK TUJUAN TOMBOL</label><input id="editPromoLink" value="${settings.promoLink||''}" placeholder="https://... atau kosongkan untuk ke katalog"></div>
+<div class="field"><label>GAMBAR BANNER</label><input id="editPromoImage" type="file" accept="image/*"></div>
+<button class="secondary" onclick="savePromoBanner()">Simpan Banner Promosi</button>
+<h3>Kelola Produk</h3>
+<div class="field"><label>NAMA PRODUK</label><input id="adminProductName" placeholder="Nama produk"></div>
+<div class="field"><label>KATEGORI</label><select id="adminProductCat">${categories.filter(c=>c!=='Semua').map(c=>`<option>${c}</option>`).join('')}</select></div>
+<div class="field"><label>HARGA (ANGKA)</label><input id="adminProductPrice" type="number" min="0" placeholder="Contoh: 150000"></div>
+<div class="field"><label>VARIAN (PISAHKAN DENGAN KOMA)</label><input id="adminProductVariants" placeholder="Random, Member pilihan"></div>
+<button class="secondary" onclick="adminAddProduct()">Tambah Produk</button>
+<div id="adminProductList" style="margin-top:10px"></div>
+<h3>Rekapan & Pesanan</h3><div class="field"><label>LINK REKAPAN EKSTERNAL (OPSIONAL)</label><input id="recapLink" value="${settings.recap||''}" placeholder="Tempel link Google Sheets / rekap"></div><button class="secondary" onclick="saveRecap()">Simpan Link Rekapan</button><button class="secondary" onclick="showRecap('owner')">Buka Ringkasan Rekapan</button><div class="field"><label>WHATSAPP TOKO (62...)</label><input id="waSetting" value="${settings.wa||''}" placeholder="628xxxxxxxxxx"></div><button class="secondary" onclick="saveWA()">Simpan WhatsApp</button><h3>Daftar Pesanan · Spreadsheet Owner</h3><p style="font-size:12px;color:var(--muted)">Tabel ini hanya ditampilkan setelah Owner login. Geser tabel ke samping untuk melihat semua kolom.</p><div id="ownerOrdersSheet">${ownerOrdersSheetHtml()}</div><h3>Kirim Notifikasi</h3><div class="field"><label>PENERIMA</label><select id="noticeTo"><option>Semua</option>${buyers.map(b=>`<option>${b.name}</option>`).join('')}</select></div><div class="field"><label>PESAN</label><input id="noticeText" placeholder="Tulis pemberitahuan"></div><button class="primary" onclick="sendNotice()">Kirim Notifikasi</button><h3>Ganti PIN Owner</h3><div class="field"><input id="newPin" placeholder="PIN baru"></div><button class="secondary" onclick="changePin()">Ganti PIN</button><button class="secondary" style="width:100%;margin-top:12px" onclick="ownerAuthenticated=false;localStorage.removeItem('gomk_ownerSession');document.getElementById('ownerRecapLink').style.display='none';closeModal();alert('Owner berhasil keluar.');if(!currentBuyer)showAccessGate()">Keluar dari Owner</button>`)}
+function ownerOrdersSheetHtml(){
+ const total=orders.reduce((a,o)=>a+Number(o.total||0),0),paid=orders.reduce((a,o)=>a+Number(o.paid||0),0),pending=orders.filter(o=>o.proof).length;
+ return `<div class="sheet-stats"><div><small>Total pesanan</small><b>${orders.length}</b></div><div><small>Nilai pesanan</small><b>${rupiah(total)}</b></div><div><small>Pembayaran diterima</small><b>${rupiah(paid)}</b></div><div><small>Sisa tagihan</small><b>${rupiah(total-paid)}</b></div><div><small>Bukti menunggu</small><b>${pending}</b></div></div>
+ <div class="sheet-tools"><input id="ownerOrderSearch" placeholder="Cari nomor pesanan / nama customer..." oninput="filterOwnerOrders()"><select id="ownerOrderFilter" onchange="filterOwnerOrders()"><option value="">Semua status</option><option value="Menunggu verifikasi pembayaran">Menunggu verifikasi pembayaran</option><option value="Menunggu pelunasan">Menunggu pelunasan</option><option value="Lunas">Lunas</option><option value="Diproses">Diproses</option><option value="Siap dikirim">Siap dikirim</option><option value="Dikirim">Dikirim</option><option value="Selesai">Selesai</option></select><button class="secondary" onclick="exportOwnerOrders()">Unduh CSV</button></div>
+ <div class="sheet-wrap"><table class="orders-sheet"><thead><tr><th>No. Pesanan</th><th>Tanggal</th><th>Customer</th><th>Rincian</th><th>Total</th><th>Sudah dibayar</th><th>Sisa</th><th>Jenis</th><th>Platform</th><th>Nominal bukti</th><th>Bukti transfer</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="ownerOrdersRows">${ownerOrdersRowsHtml(orders)}</tbody></table></div>`;
+}
+function ownerOrdersRowsHtml(rows){
+ if(!rows.length)return '<tr><td colspan="13" class="sheet-empty">Belum ada pesanan.</td></tr>';
+ return rows.map(o=>`<tr data-search="${escapeHTML((o.id+' '+o.buyer+' '+o.status+' '+(o.paymentPlatform||'')).toLowerCase())}" data-status="${escapeHTML(o.status||'')}"><td><b>${escapeHTML(o.id)}</b></td><td>${escapeHTML(o.date||'-')}</td><td>${escapeHTML(o.buyer||'-')}</td><td>${(o.items||[]).map(i=>`${escapeHTML(i.name)} (${escapeHTML(i.variant||'-')}) ×${i.qty}`).join('<br>')}</td><td>${rupiah(o.total||0)}</td><td>${rupiah(o.paid||0)}</td><td><b>${rupiah(Math.max(0,(o.total||0)-(o.paid||0)))}</b></td><td>${escapeHTML(o.paymentType||'-')}</td><td>${escapeHTML(o.paymentPlatform||'-')}</td><td>${rupiah(o.proofAmount||0)}</td><td>${o.proof?`<button class="sheet-action" onclick="viewOrderProof('${o.id}')">📷 Lihat bukti</button>`:(o.proofHistory&&o.proofHistory.length?`<button class="sheet-action" onclick="viewOrderProofHistory('${o.id}')">🗂 Riwayat bukti (${o.proofHistory.length})</button>`:'<span class="sheet-muted">Belum ada</span>')}</td><td><span class="sheet-status">${escapeHTML(o.status||'-')}</span></td><td class="sheet-actions"><button class="sheet-action" onclick="confirmPayment('${o.id}')" ${!o.proof?'disabled':''}>Konfirmasi</button><button class="sheet-action" onclick="changeStatus('${o.id}')">Status</button><button class="sheet-action" onclick="editShipping('${o.id}')">Pre-Order</button></td></tr>`).join('');
+}
+function refreshOwnerOrdersSheet(){let el=document.getElementById('ownerOrdersSheet');if(el)el.innerHTML=ownerOrdersSheetHtml()}
+function filterOwnerOrders(){let q=(document.getElementById('ownerOrderSearch')?.value||'').toLowerCase(),st=document.getElementById('ownerOrderFilter')?.value||'';document.querySelectorAll('#ownerOrdersRows tr[data-search]').forEach(tr=>{tr.style.display=tr.dataset.search.includes(q)&&(!st||tr.dataset.status===st)?'':'none'})}
+function viewOrderProof(id){let o=orders.find(x=>x.id===id);if(!o||!o.proof){alert('Bukti transfer belum tersedia.');return}openModal('Bukti Transfer · '+id,`<p><b>${escapeHTML(o.buyer)}</b> · ${escapeHTML(o.paymentPlatform||'-')} · ${rupiah(o.proofAmount||0)}</p><img src="${o.proof}" alt="Bukti transfer" style="width:100%;max-height:65vh;object-fit:contain;border-radius:14px;background:#fff"><button class="secondary" style="width:100%;margin-top:12px" onclick="ownerPanel()">Kembali ke Rekapan</button>`)}
+function viewOrderProofHistory(id){let o=orders.find(x=>x.id===id);if(!o||!o.proofHistory?.length){alert('Belum ada riwayat bukti transfer.');return}openModal('Riwayat Bukti Transfer · '+id,`<p><b>${escapeHTML(o.buyer)}</b></p>${o.proofHistory.map((h,i)=>`<div style="padding:10px 0;border-bottom:1px solid var(--line)"><b>${escapeHTML(h.date||'-')}</b><p>${escapeHTML(h.platform||'-')} · ${rupiah(h.amount||0)}</p><img src="${h.image}" alt="Bukti transfer" style="width:100%;max-height:45vh;object-fit:contain;border-radius:12px;background:#fff"></div>`).join('')}<button class="secondary" style="width:100%;margin-top:12px" onclick="ownerPanel()">Kembali ke Rekapan</button>`)}
+function exportOwnerOrders(){let head=['No Pesanan','Tanggal','Customer','Rincian','Total','Dibayar','Sisa','Jenis Pembayaran','Platform','Nominal Bukti','Status'];let rows=orders.map(o=>[o.id,o.date,o.buyer,(o.items||[]).map(i=>`${i.name} ${i.variant} x${i.qty}`).join('; '),o.total,o.paid,Math.max(0,o.total-o.paid),o.paymentType,o.paymentPlatform,o.proofAmount,o.status]);let csv='\ufeff'+[head,...rows].map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='rekapan-go-merchkpop.csv';a.click();URL.revokeObjectURL(a.href)}
+
+function addBuyer(){let name=document.getElementById('newBuyer').value.trim(),code=document.getElementById('newCode').value.trim();if(!name||!code){alert('Isi nama dan kode.');return}if(buyers.some(b=>b.name.toLowerCase()===name.toLowerCase())){alert('Nama sudah terdaftar.');return}buyers.push({name,code});put('buyers',buyers);ownerPanel()}
+function saveRecap(){settings.recap=document.getElementById('recapLink').value.trim();put('settings',settings);alert('Link rekapan disimpan.');}
+function saveQuickLinks(){settings.quickCO=document.getElementById('editQuickCO').value.trim();settings.quickBill=document.getElementById('editQuickBill').value.trim();settings.quickBox=document.getElementById('editQuickBox').value.trim();put('settings',settings);alert('Quick Links berhasil disimpan di perangkat ini.');ownerPanel();}
+
+function showRecap(role){
+ let rows=role==='buyer'?orders.filter(o=>o.buyer.toLowerCase()===String(currentBuyer||'').toLowerCase()):orders;
+ let total=rows.reduce((s,o)=>s+o.total,0),paid=rows.reduce((s,o)=>s+o.paid,0),remaining=total-paid;
+ openModal(role==='buyer'?'Rekapan Pesanan Saya':'Rekapan Semua Pesanan',`
+ <div class="two" style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+  <div class="item"><small>Total pesanan</small><h3>${rows.length}</h3></div>
+  <div class="item"><small>Nilai pesanan</small><h3>${rupiah(total)}</h3></div>
+  <div class="item"><small>Sudah dibayar</small><h3>${rupiah(paid)}</h3></div>
+  <div class="item"><small>Sisa tagihan</small><h3>${rupiah(remaining)}</h3></div>
+ </div>
+ <div class="field"><label>CARI PESANAN / NAMA / STATUS</label><input id="recapSearch" placeholder="Ketik nomor pesanan atau status..." oninput="filterRecap('${role}')"></div>
+ <div id="recapRows">${recapRowsHtml(rows,role)}</div>
+ `);
+}
+function recapRowsHtml(rows,role){
+ if(!rows.length)return '<div class="empty">Belum ada rekapan pesanan.</div>';
+ return rows.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(o=>`
+ <div class="item recap-entry" data-search="${(o.id+' '+o.buyer+' '+o.status).toLowerCase()}">
+  <div class="row"><b>${o.id}</b><span class="pill">${o.status}</span></div>
+  ${role==='owner'?`<p>Pembeli: <b>${o.buyer}</b></p>`:''}
+  <p>${o.items.map(i=>`${i.name} · ${i.variant} × ${i.qty}`).join('<br>')}</p>
+  <div class="row"><span>Total: <b>${rupiah(o.total)}</b></span><span>Dibayar: <b>${rupiah(o.paid)}</b></span></div>
+  <p>Sisa tagihan: <b>${rupiah(o.total-o.paid)}</b></p>
+  ${o.proof?'<small>📎 Bukti transfer menunggu pemeriksaan Owner</small>':''}
+ </div>`).join('');
+}
+function filterRecap(role){
+ let q=document.getElementById('recapSearch').value.toLowerCase();
+ document.querySelectorAll('#recapRows .recap-entry').forEach(el=>el.style.display=el.dataset.search.includes(q)?'block':'none');
+}
+function openRecap(){let u=settings.recap;if(!u){alert('Owner belum memasukkan link rekapan.');return}window.open(u,'_blank')}
+
+const themePresets={
+ sage:{green:'#88aa8d',deep:'#355941',mint:'#eaf3e9',bg:'#f5f9f4',line:'#dce9dc'},
+ mint:{green:'#83b8a5',deep:'#315f52',mint:'#e5f4ee',bg:'#f3faf6',line:'#d7ebe1'},
+ olive:{green:'#a3ad79',deep:'#53603b',mint:'#eff1df',bg:'#f8f8ef',line:'#e7e8d5'},
+ cream:{green:'#a5b58c',deep:'#596548',mint:'#f1f2e5',bg:'#faf9f1',line:'#e9e8d9'},
+ lavender:{green:'#a99acb',deep:'#554a70',mint:'#f0ebf7',bg:'#faf8fc',line:'#e9e2f1'}
+};
+
+function applyPromoBanner(){
+ const s=settings;
+ const title=document.getElementById('promoTitle'),desc=document.getElementById('promoText'),btn=document.getElementById('promoButton'),img=document.getElementById('promoImage');
+ if(title)title.textContent=s.promoTitle||'Promo spesial untuk K-Popers!';
+ if(desc)desc.textContent=s.promoText||'Temukan merch favoritmu di sini.';
+ if(btn)btn.textContent=s.promoButton||'Lihat Promo';
+ if(img&&s.promoImage)img.src=s.promoImage;
+}
+function savePromoBanner(){
+ settings.promoTitle=document.getElementById('editPromoTitle').value.trim();
+ settings.promoText=document.getElementById('editPromoText').value.trim();
+ settings.promoButton=document.getElementById('editPromoButton').value.trim();
+ settings.promoLink=document.getElementById('editPromoLink').value.trim();
+ const file=document.getElementById('editPromoImage').files[0];
+ const finish=()=>{put('settings',settings);applyPromoBanner();alert('Banner promosi berhasil disimpan di perangkat ini.');ownerPanel()};
+ if(file){
+  if(file.size>1800000){alert('Ukuran gambar maksimal 1,8 MB.');return}
+  const reader=new FileReader();reader.onload=()=>{settings.promoImage=reader.result;finish()};reader.readAsDataURL(file);
+ } else finish();
+}
+function promoAction(){
+ if(settings.promoLink){window.open(settings.promoLink,'_blank');return}
+ scrollToShop();
+}
+function applyWebsiteSettings(){
+ const s=settings;
+ const colors=themePresets[s.theme||'sage']||themePresets.sage;
+ Object.entries(colors).forEach(([k,v])=>document.documentElement.style.setProperty('--'+({green:'green',deep:'deep',mint:'mint',bg:'bg',line:'line'}[k]),v));
+ const name=s.shopName||'GO MERCHKPOP',tag=s.tagline||'Your K-Pop Merch Store';
+ document.querySelectorAll('.brand b').forEach(el=>el.textContent=name+' 🌿');
+ const brandTagline=document.getElementById('brandTagline');if(brandTagline)brandTagline.textContent=tag;
+ const brandDescription=document.getElementById('brandDescription');if(brandDescription)brandDescription.textContent=s.profileDesc||'Tempat berburu merch K-Pop favoritmu.';
+ const heroTitle=document.querySelector('.hero h1');if(heroTitle)heroTitle.textContent=s.heroTitle||'Welcome to GO MERCHKPOP!';
+ const heroDesc=document.querySelector('.hero > div:first-child p');if(heroDesc)heroDesc.textContent=s.heroDesc||'Temukan merch K-Pop favoritmu dengan mudah. Pilih produk, tentukan varian, masukkan ke keranjang, lalu lanjutkan pesanan.';
+ const welcome=document.querySelector('.intro b');if(welcome)welcome.textContent=s.welcome||'Hai, K-Popers!';
+ if(s.logo){document.querySelectorAll('.brand img,.hero-logo img,.drawer-logo').forEach(img=>img.src=s.logo)}
+ const drawerName=document.getElementById('drawerShopName');if(drawerName)drawerName.textContent=name+' 🍓';
+ const drawerTagline=document.getElementById('drawerTagline');if(drawerTagline)drawerTagline.textContent=tag;
+ const drawerDescription=document.getElementById('drawerDescription');if(drawerDescription)drawerDescription.textContent=s.profileDesc||'Tempat berburu merch K-Pop favoritmu.';
+ document.title=name+' — '+tag;
+}
+function saveWebsiteProfile(){
+ settings.shopName=document.getElementById('editShopName').value.trim()||'GO MERCHKPOP';
+ settings.tagline=document.getElementById('editTagline').value.trim();
+ settings.profileDesc=document.getElementById('editProfileDesc').value.trim();
+ settings.heroTitle=document.getElementById('editHeroTitle').value.trim();
+ settings.heroDesc=document.getElementById('editHeroDesc').value.trim();
+ settings.welcome=document.getElementById('editWelcome').value.trim();
+ settings.theme=document.getElementById('editTheme').value;
+ const file=document.getElementById('editLogoFile').files[0];
+ const finish=()=>{put('settings',settings);applyWebsiteSettings();applyPromoBanner();alert('Profil dan tema website berhasil disimpan di perangkat ini.');ownerPanel()};
+ if(file){if(file.size>1500000){alert('Ukuran logo maksimal 1,5 MB.');return}const reader=new FileReader();reader.onload=()=>{settings.logo=reader.result;finish()};reader.readAsDataURL(file)}else finish();
+}
+function adminAddProduct(){
+ const name=document.getElementById('adminProductName').value.trim(),cat=document.getElementById('adminProductCat').value,price=Number(document.getElementById('adminProductPrice').value),variants=document.getElementById('adminProductVariants').value.split(',').map(x=>x.trim()).filter(Boolean);
+ if(!name||!price||price<0||!variants.length){alert('Lengkapi nama, harga, dan minimal satu varian.');return}
+ products.push({id:Date.now(),name,cat,price,emoji:'🌿',desc:'Produk GO MERCHKPOP',variants});
+ put('products',products);renderProducts();ownerPanel();
+}
+function deleteAdminProduct(id){if(!confirm('Hapus produk ini?'))return;products=products.filter(x=>x.id!==id);put('products',products);renderProducts();ownerPanel()}
+function renderAdminProducts(){const el=document.getElementById('adminProductList');if(!el)return;el.innerHTML=products.map(x=>`<div class="cartline"><span><b>${x.name}</b><br>${rupiah(x.price)}</span><button class="secondary" onclick="deleteAdminProduct(${x.id})">Hapus</button></div>`).join('')}
+function saveWA(){settings.wa=document.getElementById('waSetting').value.trim();put('settings',settings);alert('Nomor WhatsApp disimpan.')}
+function confirmPayment(id){let o=orders.find(x=>x.id===id);if(!o.proof){alert('Buyer belum mengunggah bukti transfer.');return}o.paid=Math.min(o.total,o.paid+(o.proofAmount||0));o.proofHistory=o.proofHistory||[];o.proofHistory.unshift({image:o.proof,amount:o.proofAmount||0,platform:o.paymentPlatform||'-',date:new Date().toLocaleString('id-ID')});o.proof='';o.status=o.paid>=o.total?'Lunas':'Menunggu pelunasan';put('orders',orders);notices.unshift({to:o.buyer,text:`Pembayaran pesanan ${id} telah dikonfirmasi. Sisa tagihan ${rupiah(o.total-o.paid)}.`});put('notices',notices);ownerPanel()}
+
+const shippingStages=['Barang diorderkan','Sampai di WH Korea','Masuk Box','Arrived INA','Siap dikirim ke customer','Dikirim ke customer','Selesai'];
+function editShipping(id){
+ const o=orders.find(x=>x.id===id);if(!o)return;
+ openModal('Update Pre-Order '+id,`<p>Perbarui perjalanan barang untuk customer <b>${o.buyer}</b>.</p>
+ <div class="field"><label>STATUS PERJALANAN BARANG</label><select id="shipStage">${shippingStages.map(x=>`<option ${((o.shippingStage||shippingStages[0])===x)?'selected':''}>${x}</option>`).join('')}</select></div>
+ <div class="field"><label>NOMOR BOX (JIKA SUDAH MASUK BOX)</label><input id="shipBox" value="${o.boxNumber||''}" placeholder="Contoh: BOX 03"></div>
+ <div class="field"><label>KETERANGAN TAMBAHAN</label><input id="shipNote" value="${o.shippingNote||''}" placeholder="Contoh: Paket masuk box Korea tanggal ..."></div>
+ <div class="field"><label>FOTO BARANG SEBELUM DIKIRIM KE CUSTOMER</label><input id="shipPhoto" type="file" accept="image/*"></div>
+ ${o.shippingPhoto?'<p>Foto saat ini:<br><img src="'+o.shippingPhoto+'" style="width:100%;max-width:180px;border-radius:12px"></p>':''}
+ <button class="primary" style="width:100%" onclick="saveShipping('${id}')">Simpan Update Pre-Order</button>`);
+}
+function saveShipping(id){
+ const o=orders.find(x=>x.id===id);if(!o)return;
+ o.shippingStage=document.getElementById('shipStage').value;
+ o.boxNumber=document.getElementById('shipBox').value.trim();
+ o.shippingNote=document.getElementById('shipNote').value.trim();
+ const f=document.getElementById('shipPhoto').files[0];
+ const finish=()=>{put('orders',orders);notices.unshift({to:o.buyer,text:`Update Pre-Order pesanan ${id}: ${o.shippingStage}${o.boxNumber?' · '+o.boxNumber:''}.`});put('notices',notices);alert('Update Pre-Order berhasil disimpan. Customer dapat melihatnya di dashboard Buyer.');ownerPanel()};
+ if(f){if(f.size>1800000){alert('Ukuran foto maksimal 1,8 MB.');return}const reader=new FileReader();reader.onload=()=>{o.shippingPhoto=reader.result;finish()};reader.readAsDataURL(f)}else finish();
+}
+
+function changeStatus(id){let s=prompt('Masukkan status baru (Diproses / Siap dikirim / Dikirim / Selesai):');if(!s)return;let o=orders.find(x=>x.id===id);o.status=s;put('orders',orders);notices.unshift({to:o.buyer,text:`Status pesanan ${id} diperbarui: ${s}.`});put('notices',notices);ownerPanel()}
+function sendNotice(){let to=document.getElementById('noticeTo').value,text=document.getElementById('noticeText').value.trim();if(!text){alert('Tulis pesan terlebih dahulu.');return}notices.unshift({to,text});put('notices',notices);alert('Notifikasi tersimpan.');ownerPanel()}
+function changePin(){let pin=document.getElementById('newPin').value.trim();if(pin.length<4){alert('PIN minimal 4 karakter.');return}put('ownerPin',pin);alert('PIN owner berhasil diganti.');}
+function contactAdmin(){if(settings.wa)window.open('https://wa.me/'+settings.wa.replace(/\D/g,''),'_blank');else alert('Nomor WhatsApp toko belum diatur owner.')}
+function scrollToShop(){const area=document.getElementById('shopArea');area.style.display='block';setTimeout(()=>area.scrollIntoView({behavior:'smooth',block:'start'}),60)}
+
+let drawerTouchStartX=0,drawerTouchStartY=0,drawerGesture=false;
+function toggleDrawer(show){
+ const panel=document.getElementById('sideDrawer'),shade=document.getElementById('drawerShade');
+ if(!panel||!shade)return;
+ panel.classList.toggle('open',!!show);shade.classList.toggle('open',!!show);
+ document.body.style.overflow=show?'hidden':'';
+}
+function drawerGo(where){
+ toggleDrawer(false);
+ if(where==='recap'){if(!ownerAuthenticated){alert('Rekapan pembelian hanya dapat dibuka setelah Owner login.');openOwnerLogin();return}showRecap('owner');return;}
+ if(where==='home')window.scrollTo({top:0,behavior:'smooth'});
+ else if(where==='catalog')scrollToShop();
+ else if(where==='cart')openCart();
+ else if(where==='buyer')openLogin();
+ else if(where==='orders')openLogin();
+ else if(where==='owner')openOwnerLogin();
+ else if(where==='wa')contactAdmin();
+}
+document.addEventListener('touchstart',e=>{
+ if(!e.touches||!e.touches.length)return;
+ drawerTouchStartX=e.touches[0].clientX;drawerTouchStartY=e.touches[0].clientY;
+ drawerGesture=drawerTouchStartX<28||document.getElementById('sideDrawer').classList.contains('open');
+},{passive:true});
+document.addEventListener('touchend',e=>{
+ if(!drawerGesture||!e.changedTouches||!e.changedTouches.length)return;
+ const dx=e.changedTouches[0].clientX-drawerTouchStartX,dy=e.changedTouches[0].clientY-drawerTouchStartY;
+ if(Math.abs(dx)>75&&Math.abs(dx)>Math.abs(dy)*1.2){
+  const isOpen=document.getElementById('sideDrawer').classList.contains('open');
+  if(dx>0&&!isOpen)toggleDrawer(true);else if(dx<0&&isOpen)toggleDrawer(false);
+ }
+ drawerGesture=false;
+},{passive:true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleDrawer(false)});
+
+document.getElementById('year').textContent=new Date().getFullYear();if(!currentBuyer&&!ownerAuthenticated)showAccessGate();if(ownerAuthenticated)document.getElementById('ownerRecapLink').style.display='flex';drawCategories();renderProducts();updateCart();applyWebsiteSettings();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js').catch(err => {
+      console.warn('PWA offline support tidak aktif:', err);
+    });
+  });
+}
+</script>
+
+</body></html>
