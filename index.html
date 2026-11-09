@@ -282,7 +282,7 @@ function gateBuyerLogin(){const n=document.getElementById('gateBuyerName').value
 function ownerEntryFromGate(){hideAccessGate();openOwnerLogin()}
 function buyerLogout(){currentBuyer=null;sessionStorage.removeItem('gomk_buyerSession');cart=[];updateCart();closeModal();showAccessGate()}
 function openModal(title,body){document.getElementById('modalTitle').textContent=title;document.getElementById('modalBody').innerHTML=body;document.getElementById('modalbg').classList.add('show');setTimeout(()=>{let t=document.getElementById('editTheme');if(t)t.value=settings.theme||'sage';renderAdminProducts()},0)}
-function closeModal(){document.getElementById('modalbg').classList.remove('show');if(!currentBuyer&&!ownerAuthenticated)showAccessGate()}
+function closeModal(){document.getElementById('modalbg').classList.remove('show');}
 function chooseProduct(id){let p=products.find(x=>x.id===id);openModal(p.name,`<p>${p.desc}</p><div class="field"><label>PILIH VARIAN</label><select id="variant">${p.variants.map(v=>`<option>${v}</option>`).join('')}</select></div><div class="field"><label>JUMLAH</label><input id="qty" type="number" min="1" value="1"></div><b>${rupiah(p.price)}</b><p><button class="primary" style="width:100%;margin-top:14px" onclick="addCart(${id})">Tambahkan ke Keranjang</button></p>`)}
 function addCart(id){let p=products.find(x=>x.id===id),v=document.getElementById('variant').value,q=Math.max(1,Number(document.getElementById('qty').value)||1);let old=cart.find(x=>x.id===id&&x.variant===v);if(old)old.qty+=q;else cart.push({id,variant:v,qty:q});updateCart();closeModal()}
 function updateCart(){document.getElementById('cartCount').textContent=cart.reduce((s,x)=>s+x.qty,0)}
@@ -546,7 +546,7 @@ document.addEventListener('touchend',e=>{
 },{passive:true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleDrawer(false)});
 
-document.getElementById('year').textContent=new Date().getFullYear();if(!currentBuyer&&!ownerAuthenticated)showAccessGate();if(ownerAuthenticated)document.getElementById('ownerRecapLink').style.display='flex';drawCategories();renderProducts();updateCart();applyWebsiteSettings();
+document.getElementById('year').textContent=new Date().getFullYear();if(ownerAuthenticated)document.getElementById('ownerRecapLink').style.display='flex';drawCategories();renderProducts();updateCart();applyWebsiteSettings();
 </script><script>document.addEventListener('DOMContentLoaded',renderQuickLinks);</script>\n
 <script>
 if ('serviceWorker' in navigator) {
