@@ -1,0 +1,16 @@
+PANDUAN MEMASANG GO MERCHKPOP DI ANDROID
+
+1. Upload SEMUA isi folder ZIP ini ke satu repository GitHub (bukan file ZIP-nya).
+2. Di GitHub buka Settings > Pages.
+3. Pada Build and deployment pilih Deploy from a branch.
+4. Pilih branch main dan folder /(root), lalu Save.
+5. Tunggu sampai alamat website GitHub Pages muncul.
+6. Buka alamat tersebut memakai Google Chrome di HP Android.
+7. Tekan menu titik tiga (⋮) > Tambahkan ke layar utama / Install app.
+8. Pilih Install atau Tambahkan.
+
+Catatan:
+- Paket ini adalah PWA (aplikasi web yang dapat dipasang di layar utama), bukan APK.
+- HTTPS diperlukan agar pemasangan PWA bekerja; GitHub Pages menyediakan HTTPS.
+- Fitur data saat ini masih menggunakan penyimpanan lokal perangkat. Untuk berbagi data Owner-Customer antar HP perlu database online.
+- Jangan mengirim ZIP ke customer; upload isi folder ke GitHub Pages.

@@ -1,14 +1,14 @@
 {
-  "id": "./",
   "name": "GO MERCHKPOP",
   "short_name": "MERCHKPOP",
-  "description": "Aplikasi toko dan pemesanan GO MERCHKPOP",
+  "description": "Aplikasi toko GO MERCHKPOP",
   "lang": "id-ID",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#fff5f8",
-  "theme_color": "#e58aad",
+  "orientation": "portrait",
+  "background_color": "#fffaf3",
+  "theme_color": "#b92f3d",
   "icons": [
     {
       "src": "./logo-gomerchkpop.jpg",

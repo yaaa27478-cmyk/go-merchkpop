@@ -144,12 +144,13 @@ main{background:transparent}
 .access-gate{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:22px;background:linear-gradient(145deg,#fff5f9f2,#fce8f1f5);backdrop-filter:blur(10px)}
 .access-gate.show{display:flex}.access-card{width:min(460px,100%);padding:28px 24px;border:1.5px solid #edc5d5;border-radius:30px;background:#fffdfd;box-shadow:0 18px 55px #8e52651f;text-align:center}.access-card img{width:94px;height:94px;object-fit:cover;border-radius:50%;border:4px solid #ffe4ee;margin-bottom:10px}.access-card h2{margin:8px 0;color:#82465f}.access-card p{color:#8a7480;line-height:1.5}.access-card .field{text-align:left;margin:14px 0}.access-card input{width:100%;box-sizing:border-box;padding:15px;border:1px solid #e9cad7;border-radius:15px;background:#fffafd;font-size:16px}.access-card button{width:100%;margin-top:10px}.access-card .owner-entry{background:#fff;color:#874762;border:1px solid #e9cad7}
 </style>
-<link rel="manifest" href="manifest.webmanifest">
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#b92f3d">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="GO MERCHKPOP">
-<link rel="apple-touch-icon" href="logo-gomerchkpop.jpg">
+<link rel="apple-touch-icon" href="./logo-gomerchkpop.jpg">
 
 </head>
 <body>
@@ -312,12 +313,10 @@ function ownerPanel(){openModal('Dashboard Owner',`<h3>Ringkasan</h3><p>Pembeli:
 <div class="field"><label>CARA CHECKOUT DI GO MERCHKPOP</label><textarea id="editCheckoutText">${escapeHTML(settings.infoCheckout||'1. Buka keranjang dan periksa pesananmu.\n2. Masukkan nama dan kode Buyer dari Owner.\n3. Tekan Buat Pesanan.\n4. Login Buyer untuk melihat tagihan dan status pesanan.\n5. Lakukan pembayaran sesuai instruksi dan unggah bukti transfer jika diminta.')}</textarea></div>
 <div class="field"><label>INFORMASI PAYMENT GO MERCHKPOP</label><textarea id="editPaymentInfo">${escapeHTML(settings.paymentInfo||'Silakan transfer sesuai nominal tagihan yang tertera pada pesanan. Pilih DP atau Full Payment, lalu unggah bukti transfer melalui checkout.')}</textarea></div>
 <button class="secondary" onclick="saveInfoPages()">Simpan Informasi Customer & Payment</button>
-<h3>Quick Links Customer</h3>
-<p style="font-size:12px;color:var(--muted)">Masukkan alamat link tujuan. Tombol akan tampil di beranda customer.</p>
-<div class="field"><label>LINK CO</label><input id="editQuickCO" value="${escapeHTML(settings.quickCO||'')}" placeholder="https://..."></div>
-<div class="field"><label>LINK TAGIHAN PELUNASAN</label><input id="editQuickBill" value="${escapeHTML(settings.quickBill||'')}" placeholder="https://..."></div>
-<div class="field"><label>LINK BOX BARANG OTW INDO</label><input id="editQuickBox" value="${escapeHTML(settings.quickBox||'')}" placeholder="https://..."></div>
-<button class="secondary" onclick="saveQuickLinks()">Simpan Quick Links</button>
+<h3>◇ Kelola Quick Links Customer</h3>
+<p style="font-size:12px;color:var(--muted)">Owner bebas menambah, mengganti nama, mengubah alamat, atau menghapus link. Satu link per baris dengan format: NAMA TOMBOL | https://alamat-link</p>
+<div class="field"><label>DAFTAR LINK CUSTOMER (BEBAS TAMBAH BARIS)</label><textarea id="editQuickLinks" placeholder="LINK CO | https://...&#10;LINK TAGIHAN PELUNASAN | https://...&#10;LINK BOX BARANG OTW INDO | https://...">${escapeHTML((settings.quickLinks&&settings.quickLinks.length?settings.quickLinks:[{label:'LINK CO',url:settings.quickCO||''},{label:'LINK TAGIHAN PELUNASAN',url:settings.quickBill||''},{label:'LINK BOX BARANG OTW INDO',url:settings.quickBox||''}]).map(x=>x.label+' | '+(x.url||'')).join('\n'))}</textarea></div>
+<button class="secondary" onclick="saveQuickLinks()">◇ Simpan Semua Quick Links</button>
 <h3>Banner Promosi Website</h3>
 <div class="field"><label>JUDUL BANNER</label><input id="editPromoTitle" value="${settings.promoTitle||'Promo spesial untuk K-Popers!'}"></div>
 <div class="field"><label>DESKRIPSI PROMO</label><input id="editPromoText" value="${settings.promoText||'Temukan merch favoritmu di sini.'}"></div>
@@ -351,7 +350,36 @@ function exportOwnerOrders(){let head=['No Pesanan','Tanggal','Customer','Rincia
 
 function addBuyer(){let name=document.getElementById('newBuyer').value.trim(),code=document.getElementById('newCode').value.trim();if(!name||!code){alert('Isi nama dan kode.');return}if(buyers.some(b=>b.name.toLowerCase()===name.toLowerCase())){alert('Nama sudah terdaftar.');return}buyers.push({name,code});put('buyers',buyers);ownerPanel()}
 function saveRecap(){settings.recap=document.getElementById('recapLink').value.trim();put('settings',settings);alert('Link rekapan disimpan.');}
-function saveQuickLinks(){settings.quickCO=document.getElementById('editQuickCO').value.trim();settings.quickBill=document.getElementById('editQuickBill').value.trim();settings.quickBox=document.getElementById('editQuickBox').value.trim();put('settings',settings);alert('Quick Links berhasil disimpan di perangkat ini.');ownerPanel();}
+function saveQuickLinks(){
+ const raw=document.getElementById('editQuickLinks').value.split(/\r?\n/);
+ const links=[];
+ for(const line of raw){if(!line.trim())continue;const parts=line.split('|');const label=(parts.shift()||'').trim();const url=parts.join('|').trim();
+  if(!label){alert('Setiap baris harus memiliki nama tombol.');return;}
+  if(url && !/^https?:\/\//i.test(url)){alert('Alamat link untuk "'+label+'" harus diawali http:// atau https://');return;}
+  links.push({label,url});
+ }
+ if(!links.length){alert('Tambahkan minimal satu link.');return;}
+ settings.quickLinks=links;
+ settings.quickCO=links[0]?.url||'';settings.quickBill=links[1]?.url||'';settings.quickBox=links[2]?.url||'';
+ put('settings',settings);renderQuickLinks();alert('Quick Links berhasil disimpan.');ownerPanel();
+}
+function renderQuickLinks(){
+ const host=document.getElementById('quickLinksDynamic');if(!host)return;
+ const links=settings.quickLinks&&settings.quickLinks.length?settings.quickLinks:[
+  {label:'LINK CO',url:settings.quickCO||''},{label:'LINK TAGIHAN PELUNASAN',url:settings.quickBill||''},{label:'LINK BOX BARANG OTW INDO',url:settings.quickBox||''}
+ ];
+ host.innerHTML=links.map((x,i)=>`<button class="${i===0?'quick-link-main':''}" onclick="openQuickLink(${i})"><span>◇</span> ${escapeHTML(x.label)}</button>`).join('');
+}
+function openQuickLink(kind){
+ const links=settings.quickLinks&&settings.quickLinks.length?settings.quickLinks:[
+  {label:'LINK CO',url:settings.quickCO||''},{label:'LINK TAGIHAN PELUNASAN',url:settings.quickBill||''},{label:'LINK BOX BARANG OTW INDO',url:settings.quickBox||''}
+ ];
+ const item=typeof kind==='number'?links[kind]:links[{co:0,bill:1,box:2}[kind]];
+ if(!item)return;const url=(item.url||'').trim();
+ if(!url){alert('Link '+item.label+' belum diatur Owner.');return;}
+ if(!/^https?:\/\//i.test(url)){alert('Link harus diawali http:// atau https://');return;}
+ window.open(url,'_blank','noopener');
+}
 
 function showRecap(role){
  let rows=role==='buyer'?orders.filter(o=>o.buyer.toLowerCase()===String(currentBuyer||'').toLowerCase()):orders;
@@ -519,12 +547,12 @@ document.addEventListener('touchend',e=>{
 document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleDrawer(false)});
 
 document.getElementById('year').textContent=new Date().getFullYear();if(!currentBuyer&&!ownerAuthenticated)showAccessGate();if(ownerAuthenticated)document.getElementById('ownerRecapLink').style.display='flex';drawCategories();renderProducts();updateCart();applyWebsiteSettings();
-</script>
+</script><script>document.addEventListener('DOMContentLoaded',renderQuickLinks);</script>\n
 <script>
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js').catch(err => {
-      console.warn('PWA offline support tidak aktif:', err);
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./service-worker.js').catch(function (e) {
+      console.warn('Mode offline belum aktif:', e);
     });
   });
 }
